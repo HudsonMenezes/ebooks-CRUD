@@ -12,6 +12,18 @@ const db = mysql.createConnection({
   database: process.env.DB_NAME
 })
 
+app.get('/', (req, res) => {
+  res.json('Hello this is the dark force')
+})
+
+app.get("/books", (req, res) => {
+  const q = "SELECT * FROM books"
+  db.query(q, (err, data) => {
+    if(err) return res.json(erro)
+    return res.json(data)
+  })
+})
+
 app.listen(8800, () => {
   console.log('Conectado ao backend!!')
 })
